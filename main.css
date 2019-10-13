@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+.control {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    z-index: 2;
+}
