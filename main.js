@@ -11,36 +11,28 @@ window.onload = function () {
             });
         }
     }
-
-    callCssAfterLoad($elm);
     handleZoomIn($elm);
     handleZoomOut($elm);
     activeDrag($elm);
+    
 
 }
 
 
-function handleZoomIn($elm) {
+function handleZoomIn() {
     $('button[name="zoom-in"]').click(function () {
-        $elm.css('transform', `scale(${Number($elm.css('transform').replace('matrix(', '').split(',')[0]) + 0.3})`);
-        console.log(Number($elm.css('transform').replace('matrix(', '').split(',')[0]))
+        $('.svg-object').width($('.svg-object').width() * 1.1);
     });
 }
 
-function handleZoomOut($elm) {
+function handleZoomOut() {
     $('button[name="zoom-out"]').click(function () {
-        console.log(Number($elm.css('transform').replace('matrix(', '').split(',')[0]).toFixed(2))
-        if (Number($elm.css('transform').replace('matrix(', '').split(',')[0]) - 0.3 < 1) {
-            $elm.css('transform', 'scale(1)')
-        } else {
-            $elm.css('transform', `scale(${Number($elm.css('transform').replace('matrix(', '').split(',')[0]) - 0.3})`);
+        const svgWidth = $('.svg-object').width();
+
+        if (svgWidth > $(window).width()) {
+            $('.svg-object').width(svgWidth / 1.1);
         }
     });
-}
-
-function callCssAfterLoad($elm) {
-    $elm.css({ transition: 'transform 1s ease' });
-    $elm.css('transform', 'scale(1)');
 }
 
 function activeDrag($elm) {
